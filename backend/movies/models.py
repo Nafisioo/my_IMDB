@@ -7,10 +7,9 @@ class Movie(models.Model):
     release_date = models.DateField()
     rating = models.FloatField()
     genre = models.CharField(max_length=100)
-    director = models.CharField(max_length=100)
-    duration = models.IntegerField(help_text="duration in minutes")
-    created_add =  models.DatetimeField(auto_now_add=True)
-
+    director = models.CharField(max_length=100, default='Unknown Director')
+    duration = models.IntegerField(default= 0, help_text="duration in minutes")
+    created_add =  models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
 
