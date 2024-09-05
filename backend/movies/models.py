@@ -1,12 +1,13 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models # type: ignore
+from django.contrib.auth.models import User # type: ignore
+from django.contrib.auth.models import User # type: ignore
 
 class Movie(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField()
     release_date = models.DateField()
     rating = models.FloatField()
-    genre = models.CharField(max_length=100)
+    genre = models.CharField(max_length=100, default ='Unknown Genre')
     director = models.CharField(max_length=100, default='Unknown Director')
     duration = models.IntegerField(default= 0, help_text="duration in minutes")
     created_add =  models.DateTimeField(auto_now_add=True)

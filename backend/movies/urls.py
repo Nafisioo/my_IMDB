@@ -1,26 +1,18 @@
-from django.contrib import admin
-from django.urls import path
-from movies.views import (
-    login_view,
-    home_view,
-    logout_view,
-    register_view,
-    movie_list_view,
-    movie_detail_view,
-    landing_page_view,
-    MovieListAPIView,
-    MovieDetailAPIView,
-)
+from xml.etree.ElementInclude import include
+from django.urls import path, admin # type: ignore
+from .views import MovieListCreate, MovieDetail, ActorListCreate,ActorDetail, RoleListCreate, RoleDetail, ReviewListCreate, ReviewDetail
+from backend.movies import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('', landing_page_view, name='landing_page'),
-    path('home/', home_view, name='home'),
-    path('login/', login_view, name='login'),
-    path('register/', register_view, name='register'),
-    path('movies/', movie_list_view, name='movie_list'),
-    path('movies/<int:movie_id>/', movie_detail_view, name='movie_detail'),
-    path('api/movies/', MovieListAPIView.as_view(), name='api_movie_list'),  # API endpoint for movie list
-    path('api/movies/<int:pk>/', MovieDetailAPIView.as_view(), name='api_movie_detail'),  # API endpoint for movie detail
-    path('logout/', logout_view, name='logout'),
+    path('api/', include('movies.urls')),
+    path('movies/', MovieListCreate.as_view(), name='movie-list-create'),
+    path('movies/<int:pk>/', MovieDetail.as_view(), name='movie-detail'),
+    path('actors/', ActorListCreate.as_view(), name='actor-list-create'),
+    path('actors/<int:pk>/', ActorDetail.as_view(), name='actor-detail'),
+    path('roles/', RoleListCreate.as_view(), name='role-list-create'),
+    path('roles/<int:pk>/', RoleDetail.as_view(), name='role-detail'),
+    path('reviews/', ReviewListCreate.as_view(), name='review-list-create'),
+    path('reviews/<int:pk>/', ReviewDetail.as_view(), name='review-detail'),
 ]

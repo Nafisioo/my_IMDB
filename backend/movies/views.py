@@ -1,10 +1,10 @@
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django import forms
-from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, login, logout # type: ignore
+from django.shortcuts import render, redirect # type: ignore
+from django.contrib.auth.models import User # type: ignore
+from django import forms # type: ignore
+from django.shortcuts import get_object_or_404 # type: ignore
 from .models import Movie
-from rest_framework import generics
+from rest_framework import generics # type: ignore
 from .serializers import MovieSerializer
 
 def login_view(request):
